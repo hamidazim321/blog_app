@@ -3,9 +3,15 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :likes
 
+  after_save :update_post_counter
+
+  private
+
   def update_post_counter
     user.update(posts_counter: user.posts.count)
   end
+
+  public
 
   def recent_comments(limit = 5)
     comments.order(created_at: :desc).limit(limit)

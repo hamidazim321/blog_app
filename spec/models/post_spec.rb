@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do 
-  let (:user) {User.create(name: 'Hamid', photo: 'PhotoURL', bio: "I'm a professional testing user")}
-  subject {Post.create(title: 'testing post', text: 'hello world', user: user)}
+  let (:test_user) {User.create(name: 'Hamid', photo: 'PhotoURL', bio: "I'm a professional testing user")}
+  subject {Post.new(title: 'testing post', text: 'hello world', user: test_user)}
 
   it 'is valid with a title' do
     expect(subject).to be_valid

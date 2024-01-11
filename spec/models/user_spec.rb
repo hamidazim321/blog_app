@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do 
-  subject {User.create(name: 'Hamid', photo: 'PhotoURL', bio: "I'm a professional testing user")}
+  subject {User.new(name: 'Hamid', photo: 'PhotoURL', bio: "I'm a professional testing user")}
 
   it 'is invalid if name is blank' do
     subject.name = ""

@@ -16,7 +16,7 @@ RSpec.describe Post, type: :model do
   it 'is invalid if title exceeds 250 characters' do
     invalid_title = 'a' * 251
     subject.title = invalid_title
-    expect(subject.reload).not_to be_valid
+    expect(subject).not_to be_valid
   end
 
   it 'should associate the post with the correct author' do
@@ -25,21 +25,21 @@ RSpec.describe Post, type: :model do
 
   it 'is invalid if comments_counter is less than zero' do
     subject.comments_counter = -1
-    expect(subject.reload).not_to be_valid
+    expect(subject).not_to be_valid
   end
 
   it 'is valid when comments_counter is positive integer' do
     subject.comments_counter = 1
-    expect(subject.reload).to be_valid
+    expect(subject).to be_valid
   end
 
   it 'is invalid if likes_counter is less than zero' do
-    subject.comments_counter = -1
-    expect(subject.reload).not_to be_valid
+    subject.likes_counter = -1
+    expect(subject).not_to be_valid
   end
 
   it 'is valid when likes_counter is positive integer' do
-    subject.comments_counter = 1
-    expect(subject.reload).to be_valid
+    subject.likes_counter = 1
+    expect(subject).to be_valid
   end
 end

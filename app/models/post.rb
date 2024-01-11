@@ -3,12 +3,25 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :likes
 
-  after_save :update_post_counter
+  before_validation :set_comments_counter, :set_likes_counter
+  after_save :update_posts_counter
+
+  validates :title, presence: true, length: { maximum: 250 }
+  validates :comments_counter, :likes_counter, presence: true,
+                                               numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   private
 
-  def update_post_counter
+  def update_posts_counter
     user.update(posts_counter: user.posts.count)
+  end
+
+  def set_comments_counter
+    self.comments_counter ||= 0
+  end
+
+  def set_likes_counter
+    self.likes_counter ||= 0
   end
 
   public

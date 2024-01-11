@@ -1,7 +1,7 @@
 class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :post
-  validates :text, :user, :post, presence: true
+  validates :text, presence: true
 
   after_save :update_comments_counter
 

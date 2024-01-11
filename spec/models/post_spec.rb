@@ -4,7 +4,7 @@ RSpec.describe Post, type: :model do
   let(:test_user) { User.create!(name: 'Hamid', photo: 'PhotoURL', bio: "I'm a professional testing user") }
   subject { Post.new(title: 'testing post', text: 'hello world', user: test_user) }
 
-  before {subject.save}
+  before { subject.save }
 
   it 'is valid with a title' do
     expect(subject).to be_valid

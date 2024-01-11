@@ -13,7 +13,7 @@ class Post < ApplicationRecord
   private
 
   def update_posts_counter
-    self.user.update(posts_counter: self.user.posts.count)
+    user.update(posts_counter: user.posts.count)
   end
 
   def set_comments_counter

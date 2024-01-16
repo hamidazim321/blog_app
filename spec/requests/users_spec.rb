@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
   let(:user) { User.create(name: 'Agneta', id: 1) }
-  
+
   describe 'Get /index' do
-    before {get users_url}
+    before { get users_url }
 
     it 'renders a successful response' do
       expect(response).to be_successful
@@ -15,7 +15,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     it 'renders the index template' do
-      expect(response).to render_template("users/index")
+      expect(response).to render_template('users/index')
     end
 
     it 'template includes the correct body' do
@@ -24,7 +24,7 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'Get /show' do
-    before {get user_url(user)}
+    before { get user_url(user) }
 
     it 'renders a successful response' do
       expect(response).to be_successful
@@ -35,7 +35,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     it 'renders the index template' do
-      expect(response).to render_template("users/show")
+      expect(response).to render_template('users/show')
     end
 
     it 'template includes the correct body' do

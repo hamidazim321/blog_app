@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Posts', type: :request do
-  let (:user) {User.create(name: 'Hamid', id: 1)}
-  let (:user_url) {user_url(user)}
+  let(:user) { User.create(name: 'Hamid', id: 1) }
+  let(:user_url) { user_url(user) }
 
   def create_post(author)
     Post.create(
@@ -14,7 +14,7 @@ RSpec.describe 'Posts', type: :request do
 
   describe 'Get /index' do
     before do
-      user_post = create_post(user)
+      create_post(user)
       get user_posts_path(user)
     end
 
@@ -27,7 +27,7 @@ RSpec.describe 'Posts', type: :request do
     end
 
     it 'renders the index template' do
-      expect(response).to render_template("posts/index")
+      expect(response).to render_template('posts/index')
     end
 
     it 'template includes the correct body' do
@@ -50,7 +50,7 @@ RSpec.describe 'Posts', type: :request do
     end
 
     it 'renders the index template' do
-      expect(response).to render_template("posts/show")
+      expect(response).to render_template('posts/show')
     end
 
     it 'template includes the correct body' do

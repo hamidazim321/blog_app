@@ -1,5 +1,3 @@
-<h1>Specific post of a user goes here</h1>
-
 <section class="d-flex flex-column gap-2">
   <div class="border border-2 p-2">
     <div class="d-flex justify-content-between align-items-center">
@@ -14,7 +12,7 @@
     </div>
   </div>
   <ul class="list-unstyled p-2 border border-2">
-    <% @post.get_all_comments.each do |c| %>
+    <% @post.all_comments.each do |c| %>
       <li><strong><%= c.user.name %>:</strong> <%= c.text %></li>
     <% end %>
   </ul>

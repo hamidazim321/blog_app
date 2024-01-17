@@ -20,7 +20,7 @@ class User < ApplicationRecord
     posts.order(created_at: :desc).limit(limit)
   end
 
-  def get_all_posts
+  def all_posts
     posts.order(created_at: :desc)
   end
 end

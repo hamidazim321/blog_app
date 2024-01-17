@@ -1,8 +1,7 @@
-<h1> List of users goes here </h1>
-
-<ul> 
+<ul class="list-group "> 
   <% @users.each do |user| %>
-    <li><%= user.name %></li>
-    <%= link_to "Show this user", user_path(user) %>
+    <li class="list-group-item border-0">
+      <%= render 'user_card', user: user %>
+    </li>
   <% end %>
 </ul>

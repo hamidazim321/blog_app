@@ -3,8 +3,10 @@
   <ul class="list-unstyled p-0 d-flex flex-column gap-4">
     <% @posts.each do |post| %>
       <li class="d-flex flex-column gap-2">
-          <%= render 'partials/post_card', post: post %>
-          <%= render 'partials/comments_card', comments: post.recent_comments %>
+      <%= link_to user_post_path(@user, post), class: "text-decoration-none text-dark" do %>
+        <%= render 'partials/post_card', post: post %>
+      <% end %>
+      <%= render 'partials/comments_card', comments: post.recent_comments %>
       </li>
     <% end %>  
   </ul>

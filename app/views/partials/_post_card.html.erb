@@ -1,4 +1,10 @@
 <div class="w-100 border p-2">
   <h3><%= post.title %></h3>
-  <p><%= post.text %></p>
+  <div class="d-flex flex-column">
+    <p class="mb-0"><%= post.text %></p>
+    <p class="align-self-end m-0">
+      <span><strong>Comments:</strong> <%= post.comments_counter%></span>,
+      <span><strong>Likes:</strong> <%= post.likes_counter%></span>
+    </p>
+  </div>
 </div>

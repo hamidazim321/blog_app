@@ -1,4 +1,21 @@
 <h1>Specific post of a user goes here</h1>
 
-<h2><%= @post.title%></h2>
-<p><%= @post.text %></p>
+<section class="d-flex flex-column gap-2">
+  <div class="border border-2 p-2">
+    <div class="d-flex justify-content-between align-items-center">
+      <h3><%= @post.title%></h3>
+      <p class="my-auto">
+        <span><strong>Comments:</strong> <%= @post.comments_counter%></span>,
+        <span><strong>Likes:</strong> <%= @post.likes_counter%></span>
+      </p>
+    </div>
+    <div>
+      <p><%= @post.text %></p>
+    </div>
+  </div>
+  <ul class="list-unstyled p-2 border border-2">
+    <% @post.get_all_comments.each do |c| %>
+      <li><strong><%= c.user.name %>:</strong> <%= c.text %></li>
+    <% end %>
+  </ul>
+</section>

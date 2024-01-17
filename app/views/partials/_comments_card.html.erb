@@ -1,0 +1,13 @@
+<%if comments.empty?%>
+  <div class="border border-2">
+    No comments yet
+  </div>
+  <% else %>
+    <div class="border border-2">
+      <ul class="list-unstyled">
+        <%comments.each do |c|%>
+          <li><strong><%= c.user.name %>:</strong> <%= c.text %></li>
+        <% end %>
+      </ul>
+    </div>
+<%end%>

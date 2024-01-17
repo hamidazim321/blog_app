@@ -4,8 +4,12 @@
     <h3>Bio</h3>
     <p><%= @user.bio %></p>
   </div>
-  <% @user.recent_posts.each_with_index do |post, index|%>
-    <%= render partial: 'partials/post_card', locals: {post: post, index: index+1}%>
-  <% end %>
+  <ul class="list-unstyled p-0 d-flex flex-column gap-2">
+    <% @user.recent_posts.each do |post|%>
+      <li>
+        <%= render 'partials/post_card', post: post %>
+      </li>
+    <% end %>
+  </ul>
   <%= link_to "See all posts", user_posts_path(@user), class: "text-decoration-none text-dark btn border border-2 border-dark mx-auto", style: "width: fit-content" %>
 </section>

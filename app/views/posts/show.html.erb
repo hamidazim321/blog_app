@@ -11,9 +11,15 @@
       <p><%= @post.text %></p>
     </div>
   </div>
-  <ul class="list-unstyled p-2 border border-2">
-    <% @post.all_comments.each do |c| %>
-      <li><strong><%= c.user.name %>:</strong> <%= c.text %></li>
-    <% end %>
-  </ul>
+  <%if @post.all_comments.empty?%>
+    <div class="border border-2 p-2">
+      No comments yet
+    </div>
+    <% else %>
+      <ul class="list-unstyled p-2 border border-2">
+        <% @post.all_comments.each do |c| %>
+          <li><strong><%= c.user.name %>:</strong> <%= c.text %></li>
+        <% end %>
+      </ul>
+  <%end%>
 </section>

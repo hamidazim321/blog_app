@@ -1,10 +1,14 @@
-<h1>Specific user posts goes here</h1>
-
-<ul> 
-  <% @posts.each do |post| %>
-    <li>
-      <h2><%= post.title %></h2>
-      <%= link_to "Show this post", user_post_path(@user, post) %>
-    </li>
-  <% end %>
-</ul>
+<section class="d-flex flex-column gap-2">
+  <%= render 'partials/user_card', user: @user%>
+  <ul class="list-unstyled p-0 d-flex flex-column gap-4">
+    <% @posts.each do |post| %>
+      <li class="d-flex flex-column gap-2">
+      <%= link_to user_post_path(@user, post), class: "text-decoration-none text-dark" do %>
+        <%= render 'partials/post_card', post: post %>
+      <% end %>
+      <%= render 'partials/comments_card', comments: post.recent_comments %>
+      </li>
+    <% end %>  
+  </ul>
+  <button class="btn border border-2 border-dark mx-auto" style="width: fit-content">Pagination</button>
+</section>

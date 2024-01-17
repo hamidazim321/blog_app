@@ -1,5 +1,17 @@
-<h1>Searched user goes here</h1>
-
-<p> <strong>name:</strong> <%= @user.name %><p/>
-<p> <strong>bio:</strong> <%= @user.bio %><p/>
-<%= link_to "Show posts by this user", user_posts_path(@user) %>
+<section class="d-flex flex-column gap-2">
+  <%= render 'partials/user_card', user: @user%>
+  <div class="w-100 border p-2">
+    <h3>Bio</h3>
+    <p><%= @user.bio %></p>
+  </div>
+  <ul class="list-unstyled p-0 d-flex flex-column gap-2">
+    <% @user.recent_posts.each do |post|%>
+      <li>
+        <%= link_to user_post_path(@user, post), class: "text-decoration-none text-dark" do %>
+          <%= render 'partials/post_card', post: post %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <%= link_to "See all posts", user_posts_path(@user), class: "text-decoration-none text-dark btn border border-2 border-dark mx-auto", style: "width: fit-content" %>
+</section>

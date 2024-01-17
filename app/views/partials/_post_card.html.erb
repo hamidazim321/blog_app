@@ -1,0 +1,12 @@
+<% post_text = post.text.length > 50 ? post.text[0..49] + '...' : post.text %>
+
+<div class="w-100 border p-2">
+  <h3><%= post.title %></h3>
+  <div class="d-flex flex-column">
+    <p class="mb-0"><%= post_text %></p>
+    <p class="align-self-end m-0">
+      <span><strong>Comments:</strong> <%= post.comments_counter%></span>,
+      <span><strong>Likes:</strong> <%= post.likes_counter%></span>
+    </p>
+  </div>
+</div>

@@ -7,6 +7,6 @@ Rails.application.routes.draw do
     end
   end
 
-  # match '*path', to: redirect('/'), via: :all
+  match '*path', to: redirect('/'), via: :all
   get "up" => "rails/health#show", as: :rails_health_check
 end

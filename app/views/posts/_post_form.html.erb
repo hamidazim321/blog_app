@@ -1,0 +1,5 @@
+<%= form_with(model: [:user, @post], data: { turbo: false }, local: true) do |f|%>
+  <%= f.text_field :title, placeholder: 'Title', class: 'form-control mb-2' %>
+  <%= f.text_area :text, placeholder: 'post...', class: 'form-control mb-2'  %>
+  <%= f.submit class: 'btn btn-primary' %>
+<% end %>

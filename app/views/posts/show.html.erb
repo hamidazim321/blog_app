@@ -22,4 +22,12 @@
         <% end %>
       </ul>
   <%end%>
+  <div class"d-flex gap-3">
+    <%= link_to 'add a comment',  new_user_post_comment_path(@user, @post), class: "btn btn-primary", style: "width: fit-content"%>
+    <div class="d-inline-block">
+      <%= form_with url: user_post_likes_path(@user, @post), method: :post, html: {style: 'width: fit-content'} do |form| %>
+        <%= form.submit 'Like the post', class: "btn btn-primary", style: "width: fit-content" %>
+      <% end %>
+    </div>
+  </div>
 </section>

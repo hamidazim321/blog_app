@@ -1,12 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Post', type: :feature do
-
   before :each do
     @user = User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.')
-    @post =  Post.create(user: @user, title: 'Hello', text: 'This is my first post')
+    @post = Post.create(user: @user, title: 'Hello', text: 'This is my first post')
   end
-  
+
   context 'index page' do
     it "show user's username" do
       visit user_posts_path(@user)

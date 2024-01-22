@@ -23,14 +23,27 @@ RSpec.describe 'Post', type: :feature do
       recent_post = user.recent_posts[0]
       expect(page).to have_content(recent_post.title) if recent_post
     end
+
+    it "shows some of the post's body." do
+      visit user_posts_path(user)
+      recent_post = user.recent_posts[0]
+      if recent_post
+        if recent_post.text.length > 50
+          expect(page).to have_content("#{recent_post.text[0, 49]}...")
+        else
+          expect(page).to have_content(recent_post.text)
+        end
+      end
+    end
+
   end
   context 'Click' do
     it "redirects me to that post's show page when I click on a post" do
       visit user_posts_path(user)
       if user.posts.any?
-        first_recent_post = user.recent_posts[0]
-        click_link first_recent_post.title
-        expect(page).to have_current_path(user_post_path(user, first_recent_post))
+        recent_post = user.recent_posts[0]
+        click_link recent_post.title
+        expect(page).to have_current_path(user_post_path(user, recent_post))
       end
     end
   end

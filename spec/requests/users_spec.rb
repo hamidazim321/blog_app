@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
-  let(:user) { User.create(name: 'Agneta', id: 1) }
+  let(:user) { User.create(name: 'Hamid', id: 1) }
 
   describe 'Get /index' do
     before { get users_url }

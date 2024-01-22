@@ -1,5 +1,9 @@
 <div class="d-flex gap-4">
-  <div class="border p-2 w-auto"><%= image_tag user.photo %></div>
+  <div class="border p-2 w-auto">
+    <%if user.photo%>
+      <%= image_tag user.photo%>
+    <%end%>
+  </div>
   <div class="border p-2 w-100 d-flex flex-column">
     <h3 class="mb-0"><%= user.name %></h3>
     <p class="align-self-end m-0">Number of posts: <span><%= user.posts_counter %></span></p>

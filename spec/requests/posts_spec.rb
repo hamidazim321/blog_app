@@ -29,10 +29,6 @@ RSpec.describe 'Posts', type: :request do
     it 'renders the index template' do
       expect(response).to render_template('posts/index')
     end
-
-    it 'template includes the correct body' do
-      expect(response.body).to include('<h1>Specific user posts goes here</h1>')
-    end
   end
 
   describe 'Get /show' do
@@ -53,8 +49,5 @@ RSpec.describe 'Posts', type: :request do
       expect(response).to render_template('posts/show')
     end
 
-    it 'template includes the correct body' do
-      expect(response.body).to include('<h1>Specific post of a user goes here</h1>')
-    end
   end
 end

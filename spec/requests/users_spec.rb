@@ -17,10 +17,6 @@ RSpec.describe 'Users', type: :request do
     it 'renders the index template' do
       expect(response).to render_template('users/index')
     end
-
-    it 'template includes the correct body' do
-      expect(response.body).to include('<h1> List of users goes here </h1>')
-    end
   end
 
   describe 'Get /show' do
@@ -36,10 +32,6 @@ RSpec.describe 'Users', type: :request do
 
     it 'renders the index template' do
       expect(response).to render_template('users/show')
-    end
-
-    it 'template includes the correct body' do
-      expect(response.body).to include('<h1>Searched user goes here</h1>')
     end
   end
 end

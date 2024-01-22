@@ -10,5 +10,8 @@
       </li>
     <% end %>  
   </ul>
-  <button class="btn border border-2 border-dark mx-auto" style="width: fit-content">Pagination</button>
+  <div class="d-flex align-items-center justify-content-center gap-3">
+    <button class="btn d-inline border border-2 border-dark" style="width: fit-content">Pagination</button>
+    <%= link_to 'new post', new_user_post_path(@user), class: "btn btn-primary"%>
+  </div>
 </section>

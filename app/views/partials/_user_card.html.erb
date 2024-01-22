@@ -1,8 +1,10 @@
 <div class="d-flex gap-4">
   <div class="border p-2 w-auto">
-    <%if user.photo%>
-      <%= image_tag user.photo%>
-    <%end%>
+    <%= link_to user_path(user), class: "text-decoration-none text-dark" do %>
+      <% if user.photo %>
+        <%= image_tag user.photo, alt: "Profile Picture", class: "profile-picture" %>
+      <% end %>
+    <% end %>
   </div>
   <div class="border p-2 w-100 d-flex flex-column">
     <h3 class="mb-0"><%= user.name %></h3>

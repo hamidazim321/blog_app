@@ -48,6 +48,5 @@ RSpec.describe 'Posts', type: :request do
     it 'renders the index template' do
       expect(response).to render_template('posts/show')
     end
-
   end
 end

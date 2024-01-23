@@ -11,10 +11,9 @@ RSpec.feature 'User Show Page', type: :feature do
   end
 
   scenario 'Display user information' do
-    save_and_open_page
     expect(page).to have_css('.user-card img.profile-picture')
     expect(page).to have_content(@user.name) # Change to name
-    expect(page).to have_content("Number of posts: 3") # Assuming all posts are created
+    expect(page).to have_content('Number of posts: 3') # Assuming all posts are created
     expect(page).to have_content(@user.bio)
   end
 

@@ -18,7 +18,6 @@ RSpec.describe 'User Integration', type: :feature do
       expect(page).to have_css('img.profile-picture', count: User.count)
     end
 
-
     it 'displays the number of posts each user has written' do
       expect(page).to have_content("Number of posts: #{user1.posts_counter}")
       expect(page).to have_content("Number of posts: #{user2.posts_counter}")

@@ -12,6 +12,28 @@ RSpec.describe 'Post', type: :feature do
       expect(page).to have_content(@user.name)
     end
 
+    it 'shows the first comments on a post' do
+      comment1 = Comment.create(post: @post, user: @user, text: 'First comment on the post')
+      visit user_posts_path(@user)
+      expect(page).to have_content(comment1.text)
+    end
+
+    it 'shows the number of comments a post has' do
+      Comment.create(post: @post, user: @user, text: 'First comment on the post')
+      Comment.create(post: @post, user: @user, text: 'Second comment on the post')
+
+      visit user_posts_path(@user)
+      expect(page).to have_content("Comments: #{@post.comments.count}")
+    end
+
+    it 'shows the number of likes a post has' do
+      Like.create(post: @post, user: @user)
+      Like.create(post: @post, user: User.create(name: 'John'))
+
+      visit user_posts_path(@user)
+      expect(page).to have_content("Likes: #{@post.likes.count}")
+    end
+
     it 'show user profile picture' do
       visit user_posts_path(@user)
       expect(page).to have_selector("img[src='#{@user.photo}']")

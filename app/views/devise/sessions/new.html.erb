@@ -1,14 +1,12 @@
-<h2>Log in</h2>
+<h2 class="text-center mb-3">Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'd-flex flex-column gap-4'}) do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email', class:'form-control' %>
   </div>
 
   <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <%= f.password_field :password, autocomplete: "current-password", placeholder: 'password', class:'form-control' %>
   </div>
 
   <% if devise_mapping.rememberable? %>
@@ -18,8 +16,8 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  <div>
+    <%= f.submit "Log in", class:'btn btn-primary w-100' %>
   </div>
 <% end %>
 

@@ -2,8 +2,8 @@ require 'rails_helper'
 require 'capybara/rspec'
 
 RSpec.describe 'User Integration', type: :feature do
-  let!(:user1) { User.create(name: 'John', posts_counter: 2) }
-  let!(:user2) { User.create(name: 'Alice', posts_counter: 5) }
+  let!(:user1) { User.create(name: 'John', posts_counter: 2, photo: 'https://unsplash.com/photos/F_-0BxGuVvo') }
+  let!(:user2) { User.create(name: 'Alice', posts_counter: 5, photo: 'https://unsplash.com/photos/F_-0BxGuVvo') }
 
   describe 'User index page' do
     before { visit users_path }
@@ -14,8 +14,8 @@ RSpec.describe 'User Integration', type: :feature do
     end
 
     it 'displays the profile picture for each user' do
-      puts page.html
-      expect(page).to have_css('img.profile-picture', count: User.count)
+      expect(page).to have_selector("img[src='#{user1.photo}']")
+      expect(page).to have_selector("img[src='#{user2.photo}']")
     end
 
     it 'displays the number of posts each user has written' do

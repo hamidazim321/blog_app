@@ -4,8 +4,10 @@ RSpec.describe 'Post', type: :feature do
   before :each do
     @user = User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.')
     @post = Post.create(user: @user, title: 'Hello', text: 'This is my first post')
+    @comment = Comment.create(text: 'test comment', user: @user, post: @post)
   end
 
+  # rubocop:disable Metrics/BlockLength
   context 'index page' do
     it "show user's username" do
       visit user_posts_path(@user)
@@ -60,7 +62,32 @@ RSpec.describe 'Post', type: :feature do
         end
       end
     end
+
+    it 'shows the first comment on the post' do
+      visit user_posts_path(@user)
+      recent_post = @user.posts[0]
+      expect(page).to have_content(recent_post.comments[0].text)
+    end
+
+    it 'shows how many comments a post has' do
+      visit user_posts_path(@user)
+      recent_post = @user.posts[0]
+      expect(page).to have_content("Comments: #{recent_post.comments.count}")
+    end
+
+    it 'shows how many likes a post has' do
+      visit user_posts_path(@user)
+      recent_post = @user.posts[0]
+      expect(page).to have_content("Likes: #{recent_post.likes.count}")
+    end
+
+    it 'shows a section for pagination' do
+      visit user_posts_path(@user)
+      @user.posts[0]
+      expect(page).to have_button('Pagination')
+    end
   end
+  # rubocop:enable Metrics/BlockLength
   context 'Click' do
     it "redirects me to that post's show page when I click on a post" do
       visit user_posts_path(@user)

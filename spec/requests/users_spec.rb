@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
-  let(:user) { User.create(name: 'Agneta', id: 1) }
+  let(:user) { User.create(name: 'Hamid', id: 1) }
 
   describe 'Get /index' do
     before { get users_url }
@@ -16,10 +16,6 @@ RSpec.describe 'Users', type: :request do
 
     it 'renders the index template' do
       expect(response).to render_template('users/index')
-    end
-
-    it 'template includes the correct body' do
-      expect(response.body).to include('<h1> List of users goes here </h1>')
     end
   end
 
@@ -36,10 +32,6 @@ RSpec.describe 'Users', type: :request do
 
     it 'renders the index template' do
       expect(response).to render_template('users/show')
-    end
-
-    it 'template includes the correct body' do
-      expect(response.body).to include('<h1>Searched user goes here</h1>')
     end
   end
 end

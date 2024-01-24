@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
   def index
     @user = User.includes(:posts, :comments).find(params[:user_id])
     @posts = @user.posts
@@ -20,8 +21,21 @@ class PostsController < ApplicationController
       flash[:notice] = 'Post was successfully created.'
       redirect_to user_posts_path
     else
-      flash[:error] = 'There was an error creating the post.'
+      flash[:error] = @post.errors.full_messages.to_sentence
       render 'new'
+    end
+  end
+
+  def destroy
+    @post = Post.find_by_id(params[:id])
+    @user = User.find_by_id(params[:user_id])
+    if @post
+      @post.destroy
+      @post.user.decrement!(:posts_counter)
+      flash[:notice] = 'Post deleted successfully'
+      redirect_to user_posts_path(@user)
+    else
+      flash[:error] = @post.errors.full_messages.to_sentence
     end
   end
 

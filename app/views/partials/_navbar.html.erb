@@ -19,6 +19,11 @@
           </li>
         <% end %>
       </ul>
+      <div class="ms-auto">
+        <%if current_user%>
+          <p class="fs-4 my-auto"><%= current_user.name %></p>
+        <%end%>
+      </div>
     </div>
   </div>
 </nav>

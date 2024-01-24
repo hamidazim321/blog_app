@@ -23,7 +23,9 @@
         <% @post.all_comments.each do |c| %>
           <li class="d-flex justify-content-between">
             <p><strong><%= c.user.name %>:</strong> <%= c.text %></p>
-            <%= button_to 'Delete Comment', user_post_comment_path(@user, @post, c), method: :delete, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, class: 'btn btn-danger' %>
+            <% if can? :destroy, c%>
+              <%= button_to 'Delete Comment', user_post_comment_path(@user, @post, c), method: :delete, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, class: 'btn btn-danger' %>
+            <%end%>
           </li>
         <% end %>
       </ul>
@@ -36,7 +38,9 @@
       <%= button_to 'Like', user_post_likes_path(@user, @post), method: :post, class: 'btn btn-primary' %>
     </div>
     <div class="d-inline-block">
-      <%= button_to 'Delete Post', user_post_path(@user, @post), method: :delete, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, class: 'btn btn-danger' %>
+      <%if can? :destroy, @post%>
+        <%= button_to 'Delete Post', user_post_path(@user, @post), method: :delete, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, class: 'btn btn-danger' %>
+      <%end%>
     </div>
   </div>
 </section>

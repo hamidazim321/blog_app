@@ -21,16 +21,19 @@
     <% else %>
       <ul class="list-unstyled p-2 border border-2">
         <% @post.all_comments.each do |c| %>
-          <li><strong><%= c.user.name %>:</strong> <%= c.text %></li>
+          <li class="d-flex justify-content-between">
+            <p><strong><%= c.user.name %>:</strong> <%= c.text %></p>
+            <%= button_to 'Delete Comment', user_post_comment_path(@user, @post, c), method: :delete, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, class: 'btn btn-danger' %>
+          </li>
         <% end %>
       </ul>
   <%end%>
   <div class"d-flex gap-3">
-    <%= link_to 'add a comment',  new_user_post_comment_path(@user, @post), class: "btn btn-primary", style: "width: fit-content"%>
     <div class="d-inline-block">
-      <%= form_with url: user_post_likes_path(@user, @post), method: :post, html: {style: 'width: fit-content'} do |form| %>
-        <%= form.submit 'Like the post', class: "btn btn-primary", style: "width: fit-content" %>
-      <% end %>
+      <%= link_to 'add a comment',  new_user_post_comment_path(@user, @post), class: "btn btn-primary", style: "width: fit-content"%>
+    </div>
+    <div class="d-inline-block">
+      <%= button_to 'Like', user_post_likes_path(@user, @post), method: :post, class: 'btn btn-primary' %>
     </div>
     <div class="d-inline-block">
       <%= button_to 'Delete Post', user_post_path(@user, @post), method: :delete, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, class: 'btn btn-danger' %>

@@ -12,6 +12,7 @@
   </head>
 
   <body>
+    <%= render 'partials/navbar' %>
     <% flash.each do |message_type, message| %>
       <div class="alert alert-primary" role="alert">
         <%= message %>

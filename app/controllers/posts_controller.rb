@@ -36,7 +36,7 @@ class PostsController < ApplicationController
     else
       flash[:error] = @post.errors.full_messages.to_sentence
     end
-  end  
+  end
 
   private
 

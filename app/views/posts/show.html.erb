@@ -32,5 +32,8 @@
         <%= form.submit 'Like the post', class: "btn btn-primary", style: "width: fit-content" %>
       <% end %>
     </div>
+    <div class="d-inline-block">
+      <%= button_to 'Delete Post', user_post_path(@user, @post), method: :delete, data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, class: 'btn btn-danger' %>
+    </div>
   </div>
 </section>

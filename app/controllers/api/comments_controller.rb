@@ -1,5 +1,4 @@
 class Api::CommentsController < Api::ApiController
-  
   def index
     @post = Post.includes(:comments).find_by_id(params[:post_id])
     @comments = @post.comments
@@ -19,6 +18,7 @@ class Api::CommentsController < Api::ApiController
   end
 
   private
+
   def comment_params
     params.require(:comment).permit(:text)
   end

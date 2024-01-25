@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: :json } do
-    resources :posts, only: [:index, :show] do
-      resources :comments, only: [:index, :create]
+    scope '/users/:user_id' do
+      resources :posts, only: [:index, :show] do
+        resources :comments, only: [:index, :create]
+      end
     end
   end
 

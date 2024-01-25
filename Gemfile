@@ -63,3 +63,5 @@ end
 gem 'devise', '~> 4.9'
 # For authorization
 gem 'cancancan'
+
+gem 'active_model_serializers', '~> 0.10.14'

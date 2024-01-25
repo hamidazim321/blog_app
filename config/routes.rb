@@ -6,6 +6,12 @@ Rails.application.routes.draw do
     get 'users/sign_out', to: 'devise/sessions#destroy'
   end
 
+  namespace :api, defaults: { format: :json } do
+    resources :posts, only: [:index, :show] do
+      resources :comments, only: [:index, :create]
+    end
+  end
+
   resources :users, only: [:index, :show] do
     resources :posts, only: [:index, :show, :new, :create, :destroy] do
       resources :comments, only: [:new, :create, :destroy]

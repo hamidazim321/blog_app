@@ -63,3 +63,11 @@ end
 gem 'devise', '~> 4.9'
 # For authorization
 gem 'cancancan'
+
+gem 'active_model_serializers', '~> 0.10.14'
+
+gem 'bcrypt', '~> 3.1', '>= 3.1.20'
+
+gem 'jwt', '~> 2.7', '>= 2.7.1'
+
+gem 'rack-cors'

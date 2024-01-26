@@ -6,6 +6,16 @@ Rails.application.routes.draw do
     get 'users/sign_out', to: 'devise/sessions#destroy'
   end
 
+  namespace :api, defaults: { format: :json } do
+    post "/users", to: "users#create"
+    post "/auth/login", to: "auth#login"
+    scope '/users/:user_id' do
+      resources :posts, only: [:index, :show] do
+        resources :comments, only: [:index, :create]
+      end
+    end
+  end
+
   resources :users, only: [:index, :show] do
     resources :posts, only: [:index, :show, :new, :create, :destroy] do
       resources :comments, only: [:new, :create, :destroy]

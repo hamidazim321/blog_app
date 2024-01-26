@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: :json } do
+    post "/users", to: "users#create"
+    post "/auth/login", to: "auth#login"
+    get "/auth/check", to: "auth#check"
     scope '/users/:user_id' do
       resources :posts, only: [:index, :show] do
         resources :comments, only: [:index, :create]

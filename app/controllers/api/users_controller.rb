@@ -1,6 +1,6 @@
 class Api::UsersController < Api::ApiController
   skip_before_action :authorized, only: [:create]
-  rescue_from ActiveRecord::RecordInvalid, with: :handle_invalid_record
+  rescue_from ActiveRecord::RecordInvalid, with: :handle_record_not_found
   def create
     user = User.create!(user_params)
     @token = encode_token(user_id: user.id)
@@ -16,7 +16,7 @@ class Api::UsersController < Api::ApiController
     params.permit(:name, :email, :password, :bio, :password_confirmation, :photo)
   end
 
-  def handle_record_not_found
-    render json: { message: "User doesn't exist" }, status: :unauthorized
+  def handle_record_not_found(error)
+    render json: { message: error.message }, status: :unauthorized
   end
 end

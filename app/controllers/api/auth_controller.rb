@@ -1,5 +1,5 @@
 class Api::AuthController < Api::ApiController
-  skip_before_action :authorized, only: %i[login check]
+  skip_before_action :authorized, only: %i[login]
   rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
 
   def login
